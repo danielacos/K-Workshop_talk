@@ -1,0 +1,684 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the other .tex files.
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\begin{frame}{Cahn--Hilliard--Navier--Stokes model\footfullcite{abels_thermodynamically_2011}}
+  \footnotesize
+  \vspace*{-0.4cm}
+  \begin{block}{}
+  \vspace*{-0.5cm}
+  \begin{subequations}
+      % \label{cha6:NS-CH_model}
+      \begin{align*}
+          % \label{cha6:eq:NS-CH_model_u}
+          \rho(\phi)\uu_t+\left((\rho(\phi)\uu - \JJ
+          )\cdot\nabla\right)\uu-\nabla\cdot(2\eta(\phi)\DD\uu)+\nabla p 
+          + \phi \nabla \mu&=0\quad\text{in }\Omega\times(0,T),\\
+          % \label{cha6:eq:NS-CH_model_p}
+          \nabla\cdot\uu&=0\quad\text{in }\Omega\times(0,T),\\
+          % \label{cha6:eq:NS-CH_model_phi}
+          \phi_t+\nabla\cdot(\phi\uu)-\nabla\cdot(M(\phi)\nabla \mu)&=0\quad\text{in }\Omega\times(0,T),\\
+          % \label{cha6:eq:NS-CH_model_mu}
+          -\lambda\varepsilon\Delta\phi+\frac{\lambda}{\varepsilon}F'(\phi)&=\mu\quad\text{in }\Omega\times(0,T),\\
+          % \label{cha6:eq:NS-CH_model_ic}
+          \uu(0)=\uu_0,\quad\phi(0)&=\phi_0\quad\text{in }\Omega,\\
+          % \label{cha6:eq:NS-CH_model_bc}
+          \uu=0,\quad\nabla\phi\cdot\nn=0,\quad M(\phi)\nabla\mu\cdot\nn&=0\quad\text{on }\partial\Omega.
+      \end{align*}
+  \end{subequations}
+  \end{block}
+  % \vspace*{-0.7em}
+  \begin{itemize}
+    \item<1-> Different fluid densities \alert {$0<\rho_1<\rho_2$}.
+    \item<2-> \alert{$\uu$} is the volume-averaged velocity; \alert{$p$} is the pressure with \alert{$\int_\Omega p=0$}.
+    \item<3-> Phase-field variable \alert{$\phi\in [-1,1]$}
+    % =\phi(t,x)\in [-1,1]$}
+     such that \alert{$\phi=-1 $} corresponds with fluid of \structure{density $\rho_1$}, \alert{$\phi=1 $} with fluid of \structure{density $\rho_2$};
+    %  and $\phi\in (-1,1)$ in the interface between the two fluids.
+    \alert{$\mu$} is the chemical potential.
+    % \item<4-> \alert{$\mu$} is the chemical potential related to the phase-field function $\phi$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cahn--Hilliard--Navier--Stokes model}
+  \footnotesize
+  \begin{block}{}
+  \vspace*{-0.3cm}
+  \begin{subequations}
+      \begin{align*}
+          \rho(\phi)\uu_t+\left((\rho(\phi)\uu - \JJ
+          )\cdot\nabla\right)\uu-\nabla\cdot(2\eta(\phi)\DD\uu)+\nabla p 
+          + \phi \nabla \mu&=0\quad\text{in }\Omega\times(0,T),\\
+          \nabla\cdot\uu&=0\quad\text{in }\Omega\times(0,T),\\
+          \phi_t+\nabla\cdot(\phi\uu)-\nabla\cdot(M(\phi)\nabla \mu)&=0\quad\text{in }\Omega\times(0,T),\\
+          -\lambda\varepsilon\Delta\phi+\frac{\lambda}{\varepsilon}F'(\phi)&=\mu\quad\text{in }\Omega\times(0,T),\\
+          \uu(0)=\uu_0,\quad\phi(0)&=\phi_0\quad\text{in }\Omega,\\
+          \uu=0,\quad\nabla\phi\cdot\nn=0,\quad M(\phi)\nabla\mu\cdot\nn&=0\quad\text{on }\partial\Omega.
+      \end{align*}
+  \end{subequations}
+  \end{block}
+  \begin{itemize}
+      \item The density of the mixture \alert{$\rho=\rho(\phi)$} 
+      % can be defined either as the solution of 
+      satisfies the \structure{mass balance equation}
+      \begin{equation*}
+          % \label{cha6:eq:NS-CH_model_rho}
+          \escalarL{\partial_t\rho}{\overline\rho}-\escalarL{\rho\uu-\JJ}{\nabla\overline\rho}=0,\quad\forall\overline\rho\in H^1(\Omega), 
+      \quad  \hbox{in $(0,T)$},	
+      \end{equation*}
+      %  or as the explicit relation
+      so that
+      % \begin{equation*}
+          % \label{cha6:rho}
+          $$\alert{\rho(\phi)}=\frac{\rho_1+\rho_2}{2}+\frac{\rho_2-\rho_1}{2}\phi\coloneqq\rho_{\text{avg}}+\rho_{\text{dif}}\phi .$$
+      % \item $f(\phi)$ is the derivative of the Ginzburg-Landau double well potential $\alert{F(\phi)}\coloneqq\frac{1}{4}(\phi^2-1)^2$, i.e. $f(\phi)=F'(\phi)=(\phi^2-1)\phi$.
+      % \item $\alert{M(\phi)}\coloneqq(1-\phi^2)_\oplus$ is the degenerate (truncated) mobility function
+      % \item $\JJ=\frac{\rho_2-\rho_1}{2}M(\phi)\nabla\mu$ is the extra-convective term due to different densities.
+      % \item  $\eta\in \mathcal{C}([-1,1])$ with $\eta(\phi)\ge C$ for certain $C>0$ and for all $\phi \in [-1,1]$ is the viscosity of the mixture.
+      % \item $\lambda>0$ is a constant related to the  energy density.
+      % \item $\varepsilon>0$ is a small parameter related to the thickness of the interface between the two fluids.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cahn--Hilliard--Navier--Stokes model}
+  \footnotesize
+  \vspace*{-0.2cm}
+  \begin{block}{}
+  \vspace*{-0.5cm}
+  \begin{subequations}
+      \begin{align*}
+          \rho(\phi)\uu_t\framedmath<2>{+\left((\rho(\phi)\uu - \JJ
+          )\cdot\nabla\right)\uu}-\nabla\cdot(2\eta(\phi)\DD\uu)+\nabla p 
+          \framedmath<3>{+ \phi \nabla \mu}&=0\quad\text{in }\Omega\times(0,T),\\
+          \nabla\cdot\uu&=0\quad\text{in }\Omega\times(0,T),\\
+          \phi_t\framedmath<4>{+\nabla\cdot(\phi\uu)}-\nabla\cdot(M(\phi)\nabla \mu)&=0\quad\text{in }\Omega\times(0,T),\\
+          -\lambda\varepsilon\Delta\phi+\frac{\lambda}{\varepsilon}F'(\phi)&=\mu\quad\text{in }\Omega\times(0,T),\\
+          \uu(0)=\uu_0,\quad\phi(0)&=\phi_0\quad\text{in }\Omega,\\
+          \uu=0,\quad\nabla\phi\cdot\nn=0,\quad M(\phi)\nabla\mu\cdot\nn&=0\quad\text{on }\partial\Omega.
+      \end{align*}
+  \end{subequations}
+  \end{block}
+  \begin{itemize}
+      % \item Different fluid densities $0<\rho_1<\rho_2$
+      % \item Phase-field variable $\phi=\phi(t,x)\in [-1,1]$ such that $\phi=-1 $ corresponds with fluid of density $\rho_1$, $\phi=1 $ with fluid of density $\rho_2$ and $\phi\in (-1,1)$ in the interface between the two fluids.
+      % \item $\uu$ is the mean velocity.
+      % \item $p$ is the pressure of the fluid. It is usual to consider the zero mean-value pressure constraint $\int_\Omega p=0$.
+      % \item $\mu$ is the chemical potential related to the phase-field function $\phi$.
+      % \item $\DD\uu = \frac{1}{2}(\nabla\uu+\nabla\uu^t)$ is the strain tensor.
+      % \item $f(\phi)$ is the derivative of the Ginzburg-Landau double well potential $ F(\phi)=\frac{1}{4}(\phi^2-1)^2$, i.e. $f(\phi)=F'(\phi)=(\phi^2-1)\phi$.
+      % \item $M(\phi)=(1-\phi^2)_\oplus$ is the degenerate (truncated) mobility function
+      \item<1> $\alert{\DD\uu} \coloneqq \frac{1}{2}(\nabla\uu+\nabla\uu^t)$ is the strain tensor.
+      \item<1> $\alert{F(\phi)}\coloneqq\frac{1}{4}(\phi^2-1)^2$, $\alert{M(\phi)}\coloneqq(1-\phi^2)_\oplus$.
+      \item<2> \myframed{$\alert{\JJ}\coloneqq\frac{\rho_2-\rho_1}{2}M(\phi)\nabla\mu$ is the extra-convective term due to different densities.}
+      \item<3> \myframed{
+          % $\alert{\phi\nabla\mu}$ models the 
+          Capillary forces due to the surface tension.}
+      \item<4> \myframed{Convection term in the direction of $\uu$.}
+      % \end{equation*}
+      % \item  $\eta\in \mathcal{C}([-1,1])$ with $\eta(\phi)\ge C$ for certain $C>0$ and for all $\phi \in [-1,1]$ is the viscosity of the mixture.
+      % \item $\lambda>0$ is a constant related to the  energy density.
+      % \item $\varepsilon>0$ is a small parameter related to the thickness of the interface between the two fluids.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Properties of the model}
+  \footnotesize
+  \setbeamerfont{block title}{size=\small}
+  \begin{remark}
+      The solution of the model has to satisfy the following bound $\alert{\phi\in[-1,1]}$ so that $\alert{\rho(\phi)\in[\rho_1,\rho_2]}$.
+  \end{remark}
+  \pause
+
+  \begin{proposition}[Mass conservation]
+      The mass of the phase-field variable is conserved, $
+      \alert{\frac{d}{dt}\int_\Omega\phi(t,x)dx=0}.
+      $
+      In particular, the mass of the mixture is conserved, 
+       $
+      \alert{\int_\Omega \rho(\phi(t,x))dx
+      =\int_\Omega \rho(\phi_0(x))dx}.
+      $
+  \end{proposition}
+  \pause
+
+  \begin{proposition}[Energy law]
+      Assuming a sufficiently regular solution, the following energy law holds:
+      \begin{equation*}
+      \alert{\frac{d}{dt} E(\uu(t),\phi(t))}+2\int_\Omega\eta(\phi)\vert\DD\uu(t)\vert^2+\int_\Omega M(\phi(t))\vert\nabla\mu(t)\vert^2=0,
+      \end{equation*}
+      where
+          $\alert{E(\uu,\phi)}\coloneqq\int_\Omega\rho(\phi)\frac{\vert\uu\vert^2}{2}+\frac{\lambda\varepsilon}{2}\int_\Omega\vert\nabla\phi\vert^2+\frac{\lambda}{\varepsilon}\int_\Omega F(\phi).$
+      % \end{equation*}
+      % where the first term is associated to the kinetic energy and the others to the potential energy. 
+      
+      \vspace*{0.5em}
+      In particular, the energy is nonincreasing in time,
+      % the energy $E(\uu,\phi)$ is time decreasing because
+      % the solution is \structure{energy-stable} in the sense
+      $
+      \alert{\frac{d}{dt} E(\uu(t),\phi(t))\le 0}.
+      $
+  \end{proposition}
+\end{frame}
+
+\subsection{Numerical approximation}
+
+\subsubsection{Coupled structure-preserving scheme}
+
+\begin{frame}{Coupled structure-preserving scheme}
+  \scriptsize
+  \vspace*{-0.2cm}
+  \begin{block}{}
+  \vspace*{-0.1cm}
+  % We propose the following numerical scheme: find 
+  Find \alert{$\uu^{m+1}\in \Uh$}, \alert{$p^{m+1}\in\Ph$} 
+with $\int_\Omega p^{m+1}=0$, \alert{$\phi^{m+1}\in \Pd_0(\T_h)$}, \alert{$\mu^{m+1}\in \Pc_1(\T_h)$} so
+\begin{subequations}
+\begin{align*}
+  \escalarL{\rho(\Pih_1\phi^{m})\delta_t\uu^{m+1}}{\buu}
+  +\escalarL{\left[\left(\rho(\Pih_1\phi^{m})u^m-\JJ^m_h\right)\cdot\nabla\right]\uu^{m+1}}{\buu}
+  &
+  \nonumber\\
+  +2\escalarLd{\eta(\phi^{m})\DD\uu^{m+1}}{\DD\buu}
+  -\escalarL{p^{m+1}}{\nabla\cdot\buu}
+  +\alert{\ch{\phi^{m+1}}{\Pi_0\mu^{m+1}}{\buu}}
+  &
+  \nonumber\\
+  +\alert{\th{\uu^{m+1}}{\uu^{m}}{\Pih_1\phi^{m+1}}{\Pih_1\phi^m}{\mu^m}{\buu}}
+  +\alert{\sh{\uu^{m+1}}{\phi^{m+1}}{\Pi_0\mu^{m+1}}{\buu}}&=0,
+  \\
+  \escalarL{\nabla\cdot\uu^{m+1}}{\bp}&=0,
+  \\
+  \escalarL{\delta_t\phi^{m+1}}{\bphi}
+  +\structure{\aupw{\uu^{m+1}}{\phi^{m+1}}{\bphi}}
+  +\structure{\bupw{\nabla_{\nn}^0\mu^{m+1}}{M(\phi^{m+1})}{\bphi}}&=0,\\
+  \lambda\varepsilon\escalarLd{\nabla (\Pih_1 \phi^{m+1})}{\nabla\bmu}
+  +\frac{\lambda}{\varepsilon}\escalarL{f(\Pih_1\phi^{m+1}, \Pih_1\phi^m)}{\bmu}-\escalarML{\mu^{m+1}}{\bmu}&=0,
+\end{align*}
+\end{subequations}
+for each $\buu\in \Uh$, $\bp\in\Ph$, $\bphi\in\Pd_0(\T_h)$, $\bmu\in\Pc_1(\T_h)$.
+\end{block}
+
+% Here, 
+\begin{itemize}
+  \item $\alert{\JJ^m_h}=\rho_\text{dif}M(\Pih_1\phi^m)\Pi_1(\nabla\mu^m)$.
+  \item \underline{Compatible discrete spaces}: $\alert{\Uh\subset(\mathcal{C}^0(\overline\Omega)\cap H^1_0(\Omega))^d}$, $\alert{\Pd_0(\T_h)\subset\Ph}$ to guarantee the \structure{local incompressibility} of $\uu^{m+1}$:
+  \begin{equation*}
+      \label{cha6:local_incompressibility}
+      \alert{\sum_{e\in\Ehi}\int_{e} (\uu^{m+1}\cdot\nn_e) \salto{\bp}=0},\quad\forall \,\bp\in\Pd_0(\T_h).
+  \end{equation*}
+\end{itemize}
+
+% and $f(\phi_1,\phi_0)$ is a convex-splitting discretization of $f(\phi)$.
+% and $\Uh\subset(\mathcal{C}^0(\overline\Omega)\cap H^1_0(\Omega))^d$, $\Pd_0(\T_h)\subset\Ph$ is needed to guarantee the \structure{local incompressibility}
+% \begin{equation*}
+% 	% \label{cha6:local_incompressibility}
+% 	\alert{\sum_{e\in\Ehi}\int_{e} (\uu^{m+1}\cdot\nn_e) \salto{\bp}=0},\quad\forall \,\bp\in\Pd_0(\T_h).
+% \end{equation*}
+% \begin{equation}
+% \label{cha6:def:convex_splitting}
+% f(\phi_1,\phi_0)\coloneqq F_i'(\phi_1) + F_e'(\phi_0) \text{ with } F_i(\phi)\coloneqq \phi^2+\frac{1}{4},\,F_e(\phi)\coloneqq \frac{1}{4}\phi^4-\frac{3}{2}\phi^2
+% \end{equation}
+% such that $F(\phi)=F_i(\phi)+F_e(\phi)$ is a convex splitting discretization of the Ginzburg-Landau double well potential $F(\phi)$ for any  $\phi\in [-1,1]$.
+
+\end{frame}
+
+\begin{frame}{Upwind terms}
+    \small
+
+We have considered two different upwind formulas, the classical upwind 
+\begin{align*}
+	% \label{cha6:def:aupw}
+	\structure{\aupw{\uu}{\phi}{\bphi}}&\coloneqq \sum_{e\in\Ehi, e=K\cap L}\int_e\left( (\uu\cdot\nn_e)_\oplus\phi_K - (\uu\cdot\nn_e)_\ominus\phi_L\right)\salto{\bphi}\\
+	\structure{\bupw{-\nabla_{\nn}^0\mu}{M(\phi)}{\bphi}}&\coloneqq\sum_{e\in\Ehi,e=K\cap L}\int_e\left((\nabla_{\nn_e}^0\mu)_\oplus(M^\uparrow(\phi_K)+M^\downarrow(\phi_L))_\oplus\right.\notag\\&-\left.(\nabla_{\nn_e}^0\mu)_\ominus(M^\uparrow(\phi_L)+M^\downarrow(\phi_K))_\oplus\right)\salto{\bphi}.
+\end{align*}
+
+% \begin{hypothesis}
+%     \label{hyp:mesh_n}
+\pause
+\begin{minipage}{0.44\textwidth}
+\underline{Assumption on mesh:}
+    
+    % The mesh $\T_h$ of $\overline\Omega$ is structured in the sense that the 
+    Line between barycenters $C_K, C_L$ of 
+    % the triangles
+    $K,L\in\T_h$ is orthogonal to the interface $e=K\cap L\in\E_h^i$.
+\end{minipage}
+% \end{hypothesis}
+% \vspace*{0.5cm}
+\hfill
+\begin{minipage}{0.49\textwidth}
+    \begin{tikzpicture}
+        \visible<1>{\node[opacity=0.3] (img2) {\includegraphics[width=\textwidth]{img/adjacent_baricenters.pdf}};}
+        \visible<2>{\node (img2) {\includegraphics[width=\textwidth]{img/adjacent_baricenters.pdf}};}
+    \end{tikzpicture}
+\end{minipage}
+\vspace*{-0.2cm}
+\begin{block}{}
+    % \vspace*{-0.3cm}
+    \alert{$\Longrightarrow \nabla_{\nn_e}^0\mu\coloneqq\frac{-\salto{\Pi_0\mu}}{\mathcal{D}_e(\T_h)}$} \structure{slope of line between 
+    $(C_K, \mu(C_K))$ and $(C_L, \mu(C_L))$.}
+    % , with $C_K, C_L$ the barycenters of $K, L\in\T_h$.}
+    % With this assumption, for $\mu\in\Pd_1(\T_h)$, $\nabla_{\nn_e}^0\mu$ is the slope of the line between $(C_K, \mu(C_K))$ and $(C_L, \mu(C_L))$, with $C_K, C_L$ the baricenters of $K, L\in\T_h$.
+\end{block}
+% \vspace*{0.3cm}
+% More information in \cite{acosta-soba_KS_2022}.
+\end{frame}
+
+\begin{frame}{Definition of discrete terms}
+  \small
+  $\alert{\ch{\phi}{\mu}{\buu}}$ is a centered discretization of the term $\escalarL{\phi\nabla\mu}{\buu}$
+  defined as
+  \begin{equation*}
+      \alert{\ch{\phi}{\mu}{\buu}}\coloneqq 
+      - \int_\Omega\nabla\cdot(\phi\buu) \mu
+      -\sum_{e\in\Ehi}\int_e (\buu\cdot\nn_e)\media{\phi}\salto{\mu}.
+  \end{equation*}
+  \pause
+  Two consistent stabilization terms:
+  \begin{itemize}
+      \item A residual to the equation of the mixture density to \structure{control the influence of the extra convection term $\JJ$} in the fluid equation:
+  \begin{multline*}
+      \alert{\th{\uu_1}{\uu_0}{\phi_1}{\phi_0}{\mu}{\buu}}\coloneqq 
+      \\\frac{1}{2}\Big\{\escalarL{\delta_t\rho(\phi_1)}{\uu_1\cdot \buu}-\escalarLd{\rho(\phi_0)\uu_0-\rho_\text{dif}M(\phi_0)\Pi_1(\nabla\mu)}{\nabla(\uu_1\cdot \buu)}\Big\},
+  \end{multline*}
+  \pause
+  \item A term \structure{controlling the influence of the upwind term $\aupw{\uu^{m+1}}{\phi^{m+1}}{\bphi}$} in the equation of the phase-field variable:
+  \begin{equation*}
+      \alert{\sh{\uu}{\phi}{\mu}{\buu}}\coloneqq
+      -\frac{1}{2}\sum_{e\in\Ehi}\int_e(\buu\cdot\nn_e)\, \sign{\uu\cdot\nn_e}\salto{\phi}\salto{\mu},
+  \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Properties of the scheme}
+  \fontsize{9}{11}
+  \setbeamerfont{block title}{size=\small}
+  \begin{proposition}[Mass conservation]
+      The mass of the phase-field variable and its regularization are conserved. In fact, one has 
+      $
+      \alert{\int_\Omega\phi^{m+1}=\int_\Omega \phi^m},$ $\alert{\int_\Omega\Pih_1\phi^{m+1}=\int_\Omega \Pih_1\phi^m}.
+      $
+      
+      \vspace{\baselineskip}
+      As a consequence, since $\rho(\phi)$ is linear with respect to $\phi$, the mass of the mixture is also conserved: 
+      $
+     \alert{\int_\Omega \rho(\phi^{m+1})=\int_\Omega \rho(\phi^{m})},$ $\alert{\int_\Omega \rho(\Pih_1\phi^{m+1})=\int_\Omega \rho(\Pih_1\phi^{m})}.
+     $
+  \end{proposition}
+  \pause
+  \begin{theorem}[Bounds of the phase-field variable]
+      \label{cha6:thm:discrete_maximum_principle}
+      Provided that $\phi^m\in[-1,1]$ in $\Omega$, any solution $\phi^{m+1}$ and $\Pih_1\phi^{m+1}$ satisfy:
+    $\alert{\phi^{m+1}, \Pih_1\phi^{m+1}\in[-1,1]}$ in $\Omega$.
+  \end{theorem}
+  \pause
+  \begin{corollary}[Bounds of the mixture density]
+      \label{cha6:cor:discrete_maximum_principle}
+      Provided that $\rho(\phi^m)\in[\rho_1,\rho_2]$ in $\Omega$, the density of the mixture satisfies $\alert{\rho(\phi^{m+1}),\rho(\Pih_1\phi^{m+1})\in[\rho_1,\rho_2]}$ in $\Omega$.
+  \end{corollary}
+\end{frame}
+
+\begin{frame}{Properties of the scheme}
+  \scriptsize
+  \setbeamerfont{block title}{size=\footnotesize}
+  \begin{lemma}
+      \label{cha6:lemma:discrete_energy}
+      The following expression holds
+      {\fontsize{7}{8}
+      \begin{equation*}
+          \aupw{\uu^ {m+1}}{\phi^{m+1}}{\Pi_0\mu^{m+1}}
+          +\ch{\phi^{m+1}}{\Pi_0\mu^{m+1}}{\uu^{m+1}}
+          +\sh{\uu^{m+1}}{\phi^{m+1}}{\Pi_0\mu^{m+1}}{\uu^{m+1}}=0.
+      \end{equation*}
+      }
+  \end{lemma}
+  \pause
+  \begin{theorem}[Energy law]
+      \label{cha6:thm:discrete_energy_law_NS-CH}
+      The following discrete energy law holds:
+      \begin{align*}
+      \alert{\delta_tE(\uu^{m+1},\Pih_1\phi^{m+1})}&+2\escalarLd{\eta(\phi^{m+1})\DD\uu^{m+1}}{\DD\uu^{m+1}}
+      +\bupw{-\nabla_{\nn}^0\mu^{m+1}}{M(\phi^{m+1})}{\Pi_0\mu^{m+1}}\nonumber\\
+      &+\frac{\Delta t}{2}\int_\Omega\rho(\Pih_1\phi^m)\vert \delta_t \uu^{m+1}\vert^2+\frac{\Delta t\lambda\varepsilon}{2}\int_\Omega\vert\delta_t\nabla\Pih_1\phi^{m+1}\vert^2\nonumber\\&+\frac{\lambda}{\varepsilon}\int_\Omega\left(f(\Pih_1\phi^{m+1}, \Pih_1\phi^m)\delta_t\Pih_1\phi^{m+1}-F(\Pih_1\phi^{m+1})\right)
+      =0.
+      \end{align*}
+      % where the energy functional $E(\uu,\phi)$ is defined in \eqref{cha6:def:energy}.
+  \end{theorem}
+  \pause
+  % \begin{lemma}
+  %     \label{cha6:lemma:discrete_energy_inequalities}
+  %     The following two inequalities hold:
+  %     \begin{align*}
+  %         \bupw{-\nabla_{\nn}^0\mu^{m+1}}{M(\phi^{m+1})}{\Pi_0\mu^{m+1}}&\ge 0,\\
+  %         \int_\Omega\left(f(\Pih_1\phi^{m+1},\Pih_1 \phi^m)\delta_t\Pih_1\phi^{m+1}-\delta_t F(\Pih_1\phi^{m+1})\right)&\ge 0.
+  %     \end{align*}
+  % \end{lemma}
+  \begin{corollary}[Energy stability]% [Discrete energy stability]
+      % \label{cha6:cor:discrete_energy_law_NS-CH}
+      % The scheme satisfies
+      % \begin{equation*}
+      %     \delta_tE(\uu^{m+1},\Pih_1\phi^{m+1})+2\escalarLd{\eta(\phi^{m+1})\DD\uu^{m+1}}{\DD\uu^{m+1}}+\bupw{-\nabla_{\nn}^0\mu^{m+1}}{M(\phi^{m+1})}{\Pi_0\mu^{m+1}}\le 0.
+      % \end{equation*}
+      % In particular, 
+      The scheme is \structure{unconditionally energy stable}, i.e., $\alert{\delta_tE(\uu^{m+1},\Pih_1\phi^{m+1})\le 0}$.
+  \end{corollary}
+\end{frame}
+
+\begin{frame}{Regularized stabilization term}
+    \footnotesize
+    % \vspace*{-0.6cm}
+    To approximate the solution of the \structure{nonlinear scheme} by means of an iterative procedure we may use the \structure{nonsmooth Newton's method}.
+    % \footfullcite{clarke1990optimization}.
+
+    \vspace*{0.8\baselineskip}
+	The function $\sign{\phi}$ that appears in the stabilization term $\sh{\cdot}{\cdot}{\cdot}{\cdot}$ is not subdifferentiable at $\phi=0$. \pause
+
+  \vspace*{0.8\baselineskip}
+  \underline{To avoid convergence issues:}
+    \begin{itemize}
+        \item<2> Use an iterative procedure that does not rely on the Jacobian of the system such as a fixed point algorithm.
+        \item<3-4> avoid the use of the $\alert{\sign{\cdot}}$ function regularizing the term $\sh{\cdot}{\cdot}{\cdot}{\cdot}$ as follows
+        \begin{equation*}
+            \label{cha6:def:regularization_sh}
+            \alert{\shd{\uu}{\phi}{\mu}{\buu}}\coloneqq\frac{1}{2}\sum_{e\in\Ehi}\int_e(\buu\cdot\nn_e)\frac{\uu\cdot\nn_e}{\vert\uu\cdot\nn_e\vert+\delta}\salto{\Pi_0\mu}\salto{\phi},
+        \end{equation*}
+        for $\delta>0$ small. \only<4>{In this case:
+
+        % \vspace*{0.5\baselineskip}
+        {\scriptsize
+        \begin{align*}
+            % \label{cha6:discrete_energy_law_NS-CH_regularized_sh}
+            \alert{\delta_tE(\uu^{m+1},\Pih_1\phi^{m+1})}&+2\escalarLd{\eta(\phi^{m+1})\DD\uu^{m+1}}{\DD\uu^{m+1}}+\bupw{-\nabla_{\nn}^0\mu^{m+1}}{M(\phi^{m+1})}{\Pi_0\mu^{m+1}}\nonumber\\&\le-\frac{\delta}{2}\sum_{e\in\Ehi}\int_e\frac{\vert\uu^{m+1}\cdot\nn_e\vert}{\vert \uu^{m+1}\cdot\nn_e\vert+\delta}\salto{\Pi_0\mu^{m+1}}\salto{\phi^{m+1}}.
+        \end{align*}
+        }
+        }
+    \end{itemize}
+\end{frame}
+
+\subsection{Numerical experiments}
+
+\begin{frame}{Numerical experiments}
+%   \footnotesize
+  \underline{Spatial domain}: $\Omega=[-0.5,0.5]^2$.
+
+  \vspace*{1em}
+  \underline{Parameters}: $\varepsilon=0.01$, $\lambda=0.01$, $\rho_1=1$ and $\rho_2=100$
+%   , by default.
+  % , and $\sigma=4$.
+
+  \vspace*{1em}
+  \underline{Compatible
+  % discrete
+  spaces}: $\alert{(\Uh,\Ph)=((\Pb_2(\T_h)\cap H^1_0(\Omega))^d,\Pd_1(\T_h))}$.
+
+  \vspace*{1em}
+  \underline{Solver}: FEniCSx built-in Newton's method with $\alert{\shd{\cdot}{\cdot}{\cdot}{\cdot}}$, $\alert{\delta=10^{-6}}$.
+
+  % \vspace*{0.8em}
+  % \underline{Link to FEniCSx code}: \structure{\url{https://github.com/danielacos/Papers-src}}.
+
+  % \vspace*{\baselineskip}
+  % An iterative Newton solver has been used to approximate the nonlinear problem. In this sense, the modified stabilization term
+  % $\alert{\shd{\cdot}{\cdot}{\cdot}{\cdot}}$
+  % % $\alert{s_h^{2,\delta}(\cdot,\cdot,\cdot)}$
+  % with $\alert{\delta=10^{-6}}$ has been used in the coupled scheme to avoid convergence issues.
+\end{frame}
+
+% \begin{frame}{Accuracy test}
+%     \footnotesize
+%     \underline{Initial conditions} ($\chi=1$):
+%     \begin{align*}
+%     \phi_0(x,y)&=2 \tanh\left(\frac{(0.25 - \sqrt{(x-0.1)^2 + (y-0.1)^2})_\oplus}{\sqrt{2}\varepsilon}\right.\\ &\quad+ \left.\frac{(0.15 - \sqrt{(x+0.15)^2 + (y+0.15)^2})_\oplus}{\sqrt{2}\varepsilon}\right) - 1.0,\\
+%     \uu_0(x,y)&=\chi(y(0.16-(x^2+y^2))_\oplus, -x(0.16-(x^2+y^2))_\oplus).
+%     \end{align*}
+
+%     \begin{figure}[htbp]
+%         \centering
+%         \includegraphics[scale=0.2]{img/NSCH_DG-UPW_coupled_circle_Pi1_phi_i-0_cropped.png}
+%         % \caption{Initial condition of tests \ref{cha6:test:accuracy} and \ref{cha6:test:circle}}
+%         % \label{cha6:fig:circle_init}
+%     \end{figure}
+
+%     % Reference solution given by coupled approach in a very refined mesh, $h\approx 7\cdot 10^{-3}$.
+% \end{frame}
+
+% \begin{frame}{Accuracy test}
+%     \begin{table}[htbp]
+%         \centering
+%         \tiny
+%         \caption{Errors and convergence orders at $T=5\cdot 10^{-4}$ in $\norma{\cdot}_{L^2(\Omega)}$}
+%         \label{cha6:table:errors_L2}
+
+%         \hspace*{-0.77cm}\begin{tabular}{||c|c|c|c|c|c|c|c|c||}
+%             \hline
+%             \multirow{2}{*}{Variable} & \multirow{2}{*}{Scheme}& $h\approx 2.36\cdot 10^{-2}$ & \multicolumn{2}{c|}{$3h/4\approx 1.77\cdot 10^{-2}$} & \multicolumn{2}{c|}{$4h/7\approx 1.35\cdot 10^{-2}$} &\multicolumn{2}{c||}{$h/2\approx 1.18\cdot 10^{-2}$} \\
+%             \cline{3-9}
+%             &&Error &Error & \textbf{Order} &  Error & \textbf{Order} &  Error & \textbf{Order}  \\
+%             \hline
+%             \hline
+%              \multirow{2}{*}{$\Pih_1\phi$} & Coupled & $8.48e-03$ & $5.40e-03$ & $1.57$ & $3.38e-03$ & $1.73$ & $2.62e-03$ & $1.89$ \\
+%             \cline{2-9}
+%             \hline
+%             \hline
+%             \multirow{2}{*}{$\uu$} & Coupled & $5.91e-04$ & $4.89e-04$ & $0.66$ & $3.31e-04$ & $1.44$ & $2.43e-04$ & $2.30$ \\
+%             \cline{2-9}
+%             \hline
+%             \hline
+%             \multirow{2}{*}{$p$} & Coupled & $2.24e-01$ & $1.14e-01$ & $2.35$ & $5.47e-02$ & $2.71$ & $4.37e-02$ & $1.67$ \\
+%             \cline{2-9}
+%             \hline
+%         \end{tabular}
+%     \end{table}
+
+%     Reference solution given by coupled approach in a very refined mesh, $h\approx 7\cdot 10^{-3}$.
+% \end{frame}
+
+% \begin{frame}{Accuracy test}
+%     \begin{table}[htbp]
+%         \centering
+%         \tiny
+%         \caption{Errors and convergence orders at $T=5\cdot 10^{-4}$ in $\norma{\cdot}_{H^1(\Omega)}$}
+%         \label{cha6:table:errors_H1}
+
+%         \hspace*{-0.77cm}\begin{tabular}{||c|c|c|c|c|c|c|c|c||}
+%             \hline
+%             \multirow{2}{*}{Variable} & \multirow{2}{*}{Scheme}& $h\approx 2.36\cdot 10^{-2}$ & \multicolumn{2}{c|}{$3h/4\approx 1.77\cdot 10^{-2}$} & \multicolumn{2}{c|}{$3h/5\approx 1.41\cdot 10^{-2}$} &\multicolumn{2}{c||}{$h/2\approx 1.18\cdot 10^{-2}$} \\
+%             \cline{3-9}
+%             &&Error &Error & \textbf{Order} &  Error & \textbf{Order} &  Error & \textbf{Order}  \\
+%             \hline
+%             \hline
+%             \multirow{2}{*}{$\Pih_1\phi$} & Coupled &  $1.22e+00$ & $1.17e+00$ & $0.15$ & $9.12e-01$ & $0.92$ & $8.09e-01$ & $0.89$ \\
+%             \cline{2-9}
+
+%             \hline
+%             \hline
+%              \multirow{2}{*}{$\uu$} & Coupled & $9.61e-02$ & $7.98e-02$ & $0.65$ & $4.90e-02$ & $1.80$ & $3.75e-02$ & $1.99$ \\
+%             \cline{2-9}
+%             \hline
+%         \end{tabular}
+%     \end{table}
+
+%     Reference solution given by each of the coupled approach in a very refined mesh, $h\approx 7\cdot 10^{-3}$.
+% \end{frame}
+
+\begin{frame}{Mixing bubbles}
+  \small
+%   \underline{Initial conditions}:
+%   %  ($\chi=100$):
+%   \begin{align*}
+%   \phi_0(x,y)&=2 \tanh\left(\frac{(0.25 - \sqrt{(x-0.1)^2 + (y-0.1)^2})_\oplus}{\sqrt{2}\varepsilon}\right.\\ &\quad+ \left.\frac{(0.15 - \sqrt{(x+0.15)^2 + (y+0.15)^2})_\oplus}{\sqrt{2}\varepsilon}\right) - 1.0,\\
+%   \uu_0(x,y)&=100(y(0.16-(x^2+y^2))_\oplus, -x(0.16-(x^2+y^2))_\oplus).
+%   \end{align*}
+
+%   \begin{figure}[htbp]
+%       \centering
+%       \includegraphics[scale=0.2]{img/NSCH_DG-UPW_coupled_circle_Pi1_phi_i-0_cropped.png}
+%       % \caption{Initial condition of tests \ref{cha6:test:accuracy} and \ref{cha6:test:circle}}
+%       % \label{cha6:fig:circle_init}
+%   \end{figure}
+
+\begin{minipage}{0.5\textwidth}
+  \begin{figure}[htbp]
+    \centering
+
+    \if\animation1
+            \animategraphics[autoplay,loop,width=5cm]{10}{img/animation/circle/coupled/coupled_circle_nx-100_dt-1e-3_delta-1e-6_p-1e-10/cropped_NSCH_DG-UPW_coupled_circle_Pi1_phi_i-}{0}{100}
+        \fi
+\end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    \begin{figure}[htbp]
+        \centering
+        \begin{tabular}{cc}
+            \includegraphics[width=\textwidth]{img/NSCH_DG-UPW_min-max_circle_p1c_phi_nx-100_dt-1e-3.png} \\
+            \includegraphics[width=\textwidth]{img/NSCH_DG-UPW_energy_circle_nx-100_dt-1e-3.png}
+        \end{tabular}
+        % \caption{Left, maximum and minimum of $\Pih\phi$. Right, discrete energy.}
+        \label{cha6:fig:circle_max-min_energy}
+    \end{figure}
+\end{minipage}
+
+% \underline{Discrete parameters}: $h\approx 1.41\cdot 10^{-2}$ and $\Delta t=10^{-3}$.
+\end{frame}
+
+% \begin{frame}{Mixing bubbles}
+%   % Same initial conditions but $\chi=100$, $h\approx 1.41\cdot 10^{-2}$ and $\Delta t=10^{-3}$.
+%   \begin{figure}[htbp]
+%       \centering
+%       \begin{tabular}{c}
+%           \hspace*{-1cm} Coupled \\
+%           \if\animation1
+%               \animategraphics[autoplay,loop,width=5cm]{10}{img/animation/circle/coupled/coupled_circle_nx-100_dt-1e-3_delta-1e-6_p-1e-10/cropped_NSCH_DG-UPW_coupled_circle_Pi1_phi_i-}{0}{100} &
+%           \fi
+%       \end{tabular}
+%   \end{figure}
+
+% \begin{frame}{Mixing bubbles}
+%   \begin{figure}[htbp]
+%       \centering
+%       \begin{tabular}{cc}
+%           \includegraphics[width=0.49\textwidth]{img/NSCH_DG-UPW_min-max_circle_p1c_phi_nx-100_dt-1e-3.png} &
+%           \includegraphics[width=0.49\textwidth]{img/NSCH_DG-UPW_energy_circle_nx-100_dt-1e-3.png}
+%       \end{tabular}
+%       \caption{Left, maximum and minimum of $\Pih\phi$. Right, discrete energy.}
+%       \label{cha6:fig:circle_max-min_energy}
+%   \end{figure}
+% \end{frame}
+
+\begin{frame}{A heavier bubble falling in a lighter medium}
+  \small
+%   \underline{Initial condition}:
+%   $$\alert{\uu_0}=0 \text{ and } 
+%   \alert{\phi_0(x,y)}=\tanh\left(\frac{0.2 - \sqrt{x^2 + y^2}}{\sqrt{2}\varepsilon}\right),
+%   $$
+  \begin{itemize}
+    \item Bubble of density $\rho_2=100$ in a lighter medium of density $\rho_1=1$.
+    \item  \underline{Gravitational force}: extra term \alert{$-\rho(\phi)\boldsymbol{g}$} with $\boldsymbol{g}=(0,1)$ \structure{on the RHS of the fluid equation}.% acting as the gravitational forces pushing the heavier bubble down to the bottom of the domain $\Omega$.
+  \end{itemize}
+  
+%   \vspace*{1cm}
+
+% \begin{figure}[htbp]
+% 	\centering
+% 	\includegraphics[scale=0.22]{img/NSCH_DG-UPW_coupled_bubble_Pi1_phi_i-0_cropped.png}
+% 	\caption{Initial condition of test \ref{cha6:test:bubble}}
+% 	\label{cha6:fig:bubble_init}
+% \end{figure}
+
+%   \vspace*{1cm}
+
+  \begin{figure}[htbp]
+    \centering
+
+    \if\animation1
+        \animategraphics[autoplay,loop,width=5cm,every=20]{10}{img/animation/bubble/coupled/coupled_bubble_nx-100_dt-1e-4_delta-1e-6_p-1e-10/cropped_NSCH_DG-UPW_coupled_bubble_Pi1_phi_i-}{0}{2500}
+    \fi
+  \end{figure}
+%   \underline{Discrete parameters}: $h\approx 1.41\cdot 10^{-2}$ and $\Delta t=10^{-4}$.
+\end{frame}
+
+% \begin{frame}{A heavier bubble falling in a lighter medium}
+%   \begin{figure}[htbp]
+%       \centering
+%       \begin{tabular}{cc}
+%           \includegraphics[width=0.49\textwidth]{img/NSCH_DG-UPW_min-max_bubble_p1c_phi_nx-100_dt-1e-4.png} &
+%           \includegraphics[width=0.49\textwidth]{img/NSCH_DG-UPW_energy_bubble_nx-100_dt-1e-4.png}
+%       \end{tabular}
+%       \caption{Left, maximum and minimum of $\Pih\phi$. Right, discrete energy.}
+%       \label{cha6:fig:bubble_max-min_energy}
+%   \end{figure}
+% \end{frame}
+
+% \begin{frame}{Rayleigh-Taylor instability}
+%     \underline{Initial condition}:
+%     $$\alert{\uu_0}=0 \text{ and }
+%     \alert{\phi_0(x,y)}=\tanh\left(\frac{y - (0.1\exp(-(x+0.2)^2/0.1))}{\sqrt{2}\varepsilon}\right).
+%     $$
+
+%     \vspace*{1cm}
+%     Again, we add the gravity term $-\rho(\phi)\boldsymbol{g}$ with $\boldsymbol{g}=(0,1)$.
+
+% % \begin{figure}[htbp]
+% % 	\centering
+% % 	\includegraphics[scale=0.22]{img/NSCH_DG-UPW_coupled_rayleigh_Pi1_phi_i-0_cropped.png}
+% % 	\caption{Initial condition of test \ref{cha6:test:rayleigh}}
+% % 	\label{cha6:fig:rayleigh_init}
+% % \end{figure}
+
+% \vspace*{1cm}
+% \underline{Discrete parameters}: $h\approx 1.41\cdot 10^{-2}$ and $\Delta t=10^{-4}$.
+% \end{frame}
+
+
+% \begin{frame}{Rayleigh-Taylor instability}
+%     \begin{figure}[htbp]
+%         \centering
+%         \begin{tabular}{cc}
+%             \includegraphics[width=0.49\textwidth]{img/NSCH_DG-UPW_min-max_rayleigh_p1c_phi_nx-100_dt-1e-4.png} &
+%             \includegraphics[width=0.49\textwidth]{img/NSCH_DG-UPW_energy_rayleigh_nx-100_dt-1e-4.png}
+%         \end{tabular}
+%         \caption{Left, maximum and minimum of $\Pih\phi$. Right, discrete energy.}
+%         \label{cha6:fig:rayleigh_max-min_energy}
+%     \end{figure}
+% \end{frame}
+
+\begin{frame}{Rayleigh-Taylor instability}
+  \small
+  \begin{itemize}
+    \item Heavier fluid of density $\rho_2=100$ (red) and lighter fluid of density $\rho_1=1$ (blue).
+    \item  \underline{Gravitational force}: extra term \alert{$-\rho(\phi)\boldsymbol{g}$} with $\boldsymbol{g}=(0,1)$ \structure{on the RHS of the fluid equation}.% acting as the gravitational forces pushing the heavier bubble down to the bottom of the domain $\Omega$.
+  \end{itemize}
+
+  \begin{figure}[htbp]
+    \centering
+    % Coupled
+
+    \if\animation1
+        \animategraphics[autoplay,loop,width=5cm,every=20]{10}{img/animation/rayleigh/coupled/coupled_rayleigh_nx-100_dt-1e-4_delta-1e-6_p-1e-10/NSCH_DG-UPW_coupled_rayleigh_Pi1_phi_i-}{0}{2500}
+    \fi
+  \end{figure}
+%   \underline{Discrete parameters}: $h\approx 1.41\cdot 10^{-2}$ and $\Delta t=10^{-4}$.
+\end{frame}
+
+\begin{frame}{}
+	\vspace*{1.5cm}
+  \begin{center}
+	{\Huge
+		\emph{Thanks for your attention!}}
+  \end{center}
+	
+	\vspace*{1cm}
+
+  \underline{Link to FEniCSx code}: \structure{\url{https://github.com/danielacos/Papers-src}}.
+
+  % \vspace*{0.5cm}
+
+	% \begin{acknowledgements}
+	% 	The speaker has been supported by a \textit{Graduate Scholarship funded by the University of Tennessee at Chattanooga}; by \textit{UCA FPU contract UCA/REC14VPCT/2020 and travel grants funded by Universidad de Cádiz}.
+	% \end{acknowledgements}
+\end{frame}
