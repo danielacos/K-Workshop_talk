@@ -665,6 +665,37 @@ We have considered two different upwind formulas, the classical upwind
 %   \underline{Discrete parameters}: $h\approx 1.41\cdot 10^{-2}$ and $\Delta t=10^{-4}$.
 \end{frame}
 
+\begin{frame}{Open problems}
+  \begin{itemize}\setlength{\itemsep}{1em}
+      \item<1-> Generalize scheme to unstructured meshes.
+      \begin{itemize}\setlength{\itemsep}{0.5em}
+        \item<2-> \structure{Remove restriction on mesh} for adaptive mesh refinement and extension to 3D.
+      \end{itemize}
+      \item<3-> Study and improve numerical approximation.
+      \begin{itemize}\setlength{\itemsep}{0.5em}
+        \item<4-> \structure{Error estimates} for the fully discrete scheme.
+        \item<5-> \structure{Increase the order of convergence} in space while preserving positivity.
+      \end{itemize}
+      \item<6-> Reduce computational time.
+      \begin{itemize}\setlength{\itemsep}{0.5em}
+        \item<7-> \structure{Decoupled scheme} preserving the three properties.
+        \item<8-> \structure{Parallel implementation} ensuring convergence of nonlinear solver.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Open problems}
+  \addtocounter{framenumber}{-1}
+  \begin{itemize}
+    \item Study of \structure{crown instability} in falling bubble test.
+  \end{itemize}
+
+  \begin{figure}
+    \includegraphics[width=0.29\textwidth]{img/crown_instability.jpg}
+    \caption{Crown instability of a falling bubble \footfullcite{krechetnikov2009crown}}
+  \end{figure}
+\end{frame}
+
 \begin{frame}{}
 	\vspace*{1.5cm}
   \begin{center}
